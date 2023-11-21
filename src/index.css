@@ -1,0 +1,15 @@
+*{
+    box-sizing: border-box;
+}
+
+
+body{
+    margin: 0;
+    background-color: #FDFBFF;
+}
+
+@media (max-width: 433px){
+    body{
+        width: 100vh;   
+    }
+}
