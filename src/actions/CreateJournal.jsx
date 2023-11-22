@@ -1,4 +1,4 @@
-export const shareEntry = (title, content, accessToken) => {
+export const shareEntry = (title, content,category, accessToken) => {
     return async (dispatch) => {
         try {
             const response = await fetch('http://localhost:8080/journal/create', {
@@ -10,14 +10,15 @@ export const shareEntry = (title, content, accessToken) => {
                 body: JSON.stringify({
                     title,
                     content,
+                    category,
                 }),
             });
 
             if (response.ok) {
                 const data = await response.json();
                 dispatch({ type: 'CREATE_ENTRY_DATA', payload: data });
-                window.location.reload();
                 console.log('Entry created successfully');
+                // window.location.reload();
             } else {
                 console.error('Error creating entry:', response.statusText);
             }

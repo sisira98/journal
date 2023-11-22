@@ -1,9 +1,9 @@
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+// export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
-export const loginSuccess = (token) => ({
-  type: LOGIN_SUCCESS,
-  payload: token,
-});
+// export const loginSuccess = (token) => ({
+//   type: LOGIN_SUCCESS,
+//   payload: token,
+// });
 export const userLogin = (name, password) => {
   return async (dispatch) => {
     try {
@@ -21,10 +21,12 @@ export const userLogin = (name, password) => {
 
       if (response.ok) {
         const data = await response.json();
+        console.log("1");
         const accessToken = data.token;
+        console.log(accessToken);
         localStorage.setItem('accessToken', accessToken);
-        dispatch(loginSuccess(accessToken));
         console.log('Login successful');
+        dispatch({ type: 'LOGIN_SUCCESS', payload: accessToken })
       } else {
         console.error('Error logging in:', response.statusText);
       }

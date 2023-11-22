@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css"
 import EntryContainer from '../styles/NewEntryStyles';
+import { listCategory } from '../actions/ListCategory';
+import { addCategory } from '../actions/AddCategory';
 
 function NewEntry() {
   const [title, setTitle] = useState('');
@@ -15,8 +17,9 @@ function NewEntry() {
   const [category, setCategory] = useState('');
   const selectedEntryId = useSelector((state) => state.entry.selectedEntryId);
   const accessToken = localStorage.getItem('accessToken')
+  const categories = localStorage.getItem('categories')
+  const categoryArray = categories.split(',');
   const [otherCategory, setOtherCategory] = useState('');
-
   const handleSelectCategory = (event) => {
     const selectedCategory = event.target.value;
     setCategory(selectedCategory);
@@ -42,19 +45,24 @@ function NewEntry() {
     if (journal) {
       setTitle(journal.title);
       setContent(journal.content)
-      setContent(journal.category)
+      setCategory(journal.category)
     }
   }, [journal]);
 
-  const handleShare = async (shareTitle, shareContent) => {
-    console.log(shareTitle, shareContent);
+  const handleShare = async () => {
     try {
-      if (journal) {
-        dispatch(editEntry(journal.id, shareTitle, shareContent, accessToken))
-      }
-      if (shareTitle != "" && shareContent != "") {
-        dispatch(shareEntry(shareTitle, shareContent, accessToken));
+      const shareCategory = category === 'others' ? otherCategory : category;
 
+      if (journal) {
+        dispatch(editEntry(journal.id, title, content, shareCategory, accessToken));
+      }
+
+      if (!categories.includes(shareCategory)) {
+        dispatch(addCategory(shareCategory, accessToken));
+      }
+
+      if (title !== '' && content !== '') {
+        dispatch(shareEntry(title, content, shareCategory, accessToken));
       }
     } catch (error) {
       console.error('Error sharing entry:', error);
@@ -83,11 +91,12 @@ function NewEntry() {
             </EntryContainer.categoryStyle>
           ) : (
             <select value={category} onChange={handleSelectCategory}>
-              <option value="Category">Category</option>
-              <option value="Scientific">Scientific</option>
-              <option value="Academic">Academic</option>
-              <option value="Politics">Politics</option>
-              <option value="Technology">Technology</option>
+              <option value="">Select category</option>
+              {categoryArray.map((cat)=>{
+                return(
+                  <option value={cat}>{cat}</option>
+                )
+              })}
               <option value="others">Other</option>
             </select>
           )}

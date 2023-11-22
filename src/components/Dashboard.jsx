@@ -27,8 +27,11 @@ function Dashboard() {
   const [selectedEntry, setSelectedEntry] = useState(null)
   const selectedEntryIdFromCards = useSelector((state) => state.entry.selectedEntryId);
   const accessToken = localStorage.getItem('accessToken')
-  const [selectedCategory, setSelectedCategory] = useState('Category');
+  const categories = localStorage.getItem('categories')
+  const categoryArray = categories.split(',');
+  const [selectedCategory, setSelectedCategory] = useState('');
   const [pageNo, setPageNo] = useState(0);
+  const [searchBy, setSearchBy] = useState('');
 
 
   function formatDate(createdDate) {
@@ -66,6 +69,9 @@ function Dashboard() {
     };
   }, []);
 
+  const handleSearch = () => {
+    dispatch(listEntries(accessToken, pageNo, searchBy));
+  };
   const handleEditClick = (entryId) => {
     dispatch(setSelectedEntryId(entryId));
   };
@@ -79,7 +85,8 @@ function Dashboard() {
   };
 
   const handleSelectCategory = (event) => {
-    setSelectedCategory(event.target.value);
+    const newSelectedCategory = event.target.value;
+    dispatch(listEntries(accessToken, pageNo, newSelectedCategory));
   };
 
   const fetchMoreData = () => {
@@ -94,16 +101,19 @@ function Dashboard() {
         <Wrapper.Search>
           <input
             type="text"
-            placeholder="Search entry..." />
+            placeholder="Search entry..."
+            onChange={(e) => setSearchBy(e.target.value)}/>
           <button>
-            <img src={SearchIcon} alt="Search" />
+            <img src={SearchIcon} alt="Search" onClick={handleSearch}/>
           </button>
           <Wrapper.Filter>
-            <select value={selectedCategory} onChange={handleSelectCategory}>
-              <option value="Scientific">Scientific</option>
-              <option value="Academic">Academic</option>
-              <option value="Politics">Politics</option>
-              <option value="Technology">Technology</option>
+          <select value={selectedCategory} onChange={handleSelectCategory}>
+              <option value="">Select category</option>
+              {categoryArray.map((cat)=>{
+                return(
+                  <option value={cat}>{cat}</option>
+                )
+              })}
             </select>
           </Wrapper.Filter>
         </Wrapper.Search>

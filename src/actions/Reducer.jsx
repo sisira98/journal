@@ -1,9 +1,11 @@
-import { LOGIN_SUCCESS } from './UserLogin';
+// import { LOGIN_SUCCESS } from './UserLogin';
 const initialState = {
   sharedData: null,
   selectedEntryId: null,
   selectedEntry: null,
+  totalList:[],
   listData: [],
+  catList:[],
   accessToken: null,
 };
 
@@ -29,6 +31,11 @@ const Reducer = (state = initialState, action) => {
         ...state,
         listData: action.payload,
       };
+    case 'TOTAL_ENTRIES_SUCCESS':
+      return {
+        ...state,
+        totalList: action.payload,
+      };
     case 'DELETE_ENTRY_SUCCESS':
       return {
         ...state,
@@ -42,14 +49,24 @@ const Reducer = (state = initialState, action) => {
         ...state,
         selectedEntry: action.payload,
       };
-    case LOGIN_SUCCESS:
+    case 'LOGIN_SUCCESS':{
       return {
         ...state,
         accessToken: action.payload,
       };
+    }
     case 'CREATE_USER':
       return {
         ...state,
+      };
+    case 'CREATE_CATEGORY_DATA':
+      return {
+        ...state,
+      };
+    case 'LIST_CATEGORIES_SUCCESS':
+      return {
+        ...state,
+        catList: action.payload,
       };
     default:
       return state;
