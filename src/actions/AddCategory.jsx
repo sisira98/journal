@@ -13,7 +13,6 @@ export const addCategory = (category, accessToken) => {
             if (response.ok) {
                 const data = await response.json();
                 dispatch({ type: 'CREATE_CATEGORY_DATA', payload: data });
-                window.location.reload();
                 console.log('Category created successfully');
             } else {
                 console.error('Error creating Category:', response.statusText);

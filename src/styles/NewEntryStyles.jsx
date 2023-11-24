@@ -47,6 +47,7 @@ input::placeholder, input:focus{
   color: #301DAD;
 }
 button{
+  cursor:pointer;
   padding:0.7rem 3rem;
   background-color:#301DAD;
   font-family:Open Sans;
@@ -60,7 +61,7 @@ button{
 @media (max-width: 973px) {
   margin-left:0.2rem;
   button{
-    padding:0.75rem 1rem;
+    padding:0.7rem 1rem;
   }
   imput{
     width:2rem;

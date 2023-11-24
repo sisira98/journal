@@ -21,12 +21,12 @@ export const userLogin = (name, password) => {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("1");
         const accessToken = data.token;
-        console.log(accessToken);
+        const userName = data.name;
         localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('name', userName);
+        dispatch({ type: 'LOGIN_SUCCESS', payload: userName })
         console.log('Login successful');
-        dispatch({ type: 'LOGIN_SUCCESS', payload: accessToken })
       } else {
         console.error('Error logging in:', response.statusText);
       }

@@ -1,11 +1,11 @@
-// import { LOGIN_SUCCESS } from './UserLogin';
 const initialState = {
   sharedData: null,
   selectedEntryId: null,
   selectedEntry: null,
-  totalList:[],
+  totalList: [],
   listData: [],
-  catList:[],
+  catList: [],
+  trashList: [],
   accessToken: null,
 };
 
@@ -40,6 +40,10 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case 'ADDED_TO_TRASH_SUCCESS':
+      return {
+        ...state,
+      };
     case 'EDIT_ENTRY_SUCCESS':
       return {
         ...state,
@@ -49,10 +53,10 @@ const Reducer = (state = initialState, action) => {
         ...state,
         selectedEntry: action.payload,
       };
-    case 'LOGIN_SUCCESS':{
+    case 'LOGIN_SUCCESS': {
       return {
         ...state,
-        accessToken: action.payload,
+        accessToken: action.payload.accessToken,
       };
     }
     case 'CREATE_USER':
@@ -67,6 +71,15 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         catList: action.payload,
+      };
+    case 'LIST_TRASH_SUCCESS':
+      return {
+        ...state,
+        trashList: action.payload,
+      };
+    case 'RESTORE_ENTRY_SUCCESS':
+      return {
+        ...state,
       };
     default:
       return state;

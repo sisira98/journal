@@ -18,7 +18,7 @@ export const userSignUp = (name, email, password) => {
             if (response.ok) {
                 const data = await response.json();
                 dispatch({ type: 'CREATE_USER', payload: data });
-                console.log('User Created');
+                window.location.reload();
             } else {
                 console.error('Error creating User:', response.statusText);
             }

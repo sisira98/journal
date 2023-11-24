@@ -1,8 +1,31 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import FilterIcon from '../assets/Filter.png'
+
+
+const bounceAnimation = keyframes`
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+`;
 
 const Wrapper = styled.div`
 margin:0rem;
+`;
+Wrapper.Bounce = styled.img`
+  cursor:pointer;
+  bottom:4rem;
+  margin;0.5rem;
+  position:relative;
+  align-self:flex-end;
+  width:2rem;
+  cursor: pointer;
+  animation: ${bounceAnimation} 1s infinite;
 `;
 Wrapper.Content = styled.div`
 display:grid;
@@ -105,6 +128,19 @@ margin-right:14rem;
 }
 `;
 Wrapper.Main = styled.div`
+display:flex;
+flex-direction:column;
+height:520px;
+overflow-y:auto;
+&::-webkit-scrollbar{
+  width:6px;
+}
+&::-webkit-scrollbar-thumb{
+  background-color: #AFA7DF;
+}
+&::-webkit-scrollbar-track {
+  background-color: #fff;
+}
 `;
 
 Wrapper.Card = styled.div`
@@ -118,7 +154,6 @@ ${props =>
             ? 'border-right: 0.5rem solid #301DAD63;'
             : ''};
 h3{
-  width:7rem;
   margin:0 20rem 0 0;
   padding:0rem 0 0.5rem 2rem;
   font-family:Sacramento;
@@ -155,7 +190,9 @@ Wrapper.ReadMoreButton = styled.button`
 `;
 Wrapper.EntryBox = styled.div`
 margin-right:2rem;
+margin-left:2rem;
 border-radius:1rem;
+height:515px;
 box-shadow: 4px 4px 10px 6px #0000000D;
 display: ${props => (props.selected ? 'none' : 'block')};
 h3{
@@ -176,10 +213,24 @@ p{
   line-height:1.53rem;
 }
 `;
+Wrapper.Media = styled.div`
+height:400px;
+overflow-y:auto;
+&::-webkit-scrollbar{
+  width:6px;
+}
+&::-webkit-scrollbar-thumb{
+  background-color: #AFA7DF;
+}
+&::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+`;
 Wrapper.Para = styled.div`
 display:flex;
 flex-direction:column;
 p{
+  margin:0;
   padding:0 1rem 0rem 1rem;
   font-family:Open Sans;
   font-size:0.9rem;
@@ -194,6 +245,7 @@ display:flex;
 justify-content:flex-end;
 img{
   padding:0 1rem 0 0;
+  cursor:pointer;
 }
 `;
 

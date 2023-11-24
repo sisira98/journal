@@ -121,6 +121,7 @@ LoginMainDiv.ActionButtons = styled.div`
 
     }
     button{
+        cursor:pointer;
         align-self:end;
         width:10rem;
         border:1px solid #301DAD;

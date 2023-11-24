@@ -8,12 +8,13 @@ HomePageMainContent.JournalBox = styled.div`
 display:flex;
 flex-direction:row;
 margin-top:3rem;
+height:30rem;
 img{
-    margin-left:4rem;
+    margin-left:3rem;
 }
 `;
 HomePageMainContent.Book = styled.div`
-margin-left:-5rem;
+margin-left:-4rem;
 display:flex;
 flex-direction:row;
 margin-right:3rem;

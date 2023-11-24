@@ -2,14 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { listEntries } from '../actions/ListJournal';
+import { listTrash } from '../actions/ListTrash';
 import { format } from 'date-fns';
 import Delete from '../assets/Trash.svg'
 import Restore from '../assets/Restore.svg'
 import TrashContainer from '../styles/TrashStyles';
+import { deleteEntry } from '../actions/DeleteEntry';
+import { restoreEntry } from '../actions/RestoreJournal';
 
 function Trash() {
-
+    const accessToken = localStorage.getItem('accessToken')
     function formatDate(createdDate) {
         const date = new Date(createdDate);
         return format(date, "MMMM do, yyyy");
@@ -18,10 +20,17 @@ function Trash() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(listEntries());
+        dispatch(listTrash(accessToken));
     }, []);
 
-    const entries = useSelector(state => state.entry.listData);
+    const handleDelete = (entryId) => {
+        dispatch(deleteEntry(entryId, accessToken))
+    }
+    const handleRestore = (entryId) => {
+        dispatch(restoreEntry(entryId, accessToken))
+    }
+
+    const entries = useSelector(state => state.entry.trashList);
     return (
         <TrashContainer>
             <TrashContainer.TrashBox>
@@ -38,8 +47,8 @@ function Trash() {
                                 <div>{entry.title}</div>
                                 <div>{formatDate(entry.createdAt)}</div>
                                 <TrashContainer.Buttons>
-                                    <img src={Restore} alt="Restore" title='Restore' />
-                                    <img src={Delete} alt="Delete" title='Delete' />
+                                    <img src={Restore} alt="Restore" title='Restore' onClick={() => { handleRestore(entry.id) }} />
+                                    <img src={Delete} alt="Delete" title='Delete' onClick={() => { handleDelete(entry.id) }} />
                                 </TrashContainer.Buttons>
                             </TrashContainer.DeletedList>
                         )

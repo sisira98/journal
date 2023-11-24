@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { listEntries } from "../actions/ListJournal";
+import { listTotalEntries } from "../actions/TotalJournals";
 import { format } from 'date-fns';
 import { setSelectedEntryId } from "../actions/SelectJournal";
 import { Link } from "react-router-dom";
@@ -17,10 +17,10 @@ function Cards() {
   }
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(listEntries(accessToken, 0));
+    dispatch(listTotalEntries(accessToken));
   }, []);
 
-  const entries = useSelector(state => state.entry.listData);
+  const entries = useSelector(state => state.entry.totalList);
 
   const handleEditClick = (entryId) => {
     dispatch(setSelectedEntryId(entryId));
@@ -30,17 +30,16 @@ function Cards() {
       <Splide
         options={{
           perPage: 4,
-          arrows: false,
           pagination: false,
           drag: "free",
-          gap: "5rem",
+          gap: "3rem",
         }}
 
       >
         {entries.map((entry) => {
           return (
-            <SplideSlide>
-              <Link to={'/entry'} key={entry.id}>
+            <SplideSlide key={entry.id}>
+              <Link to={'/entry'}>
                 <WrapperForCards.Template onClick={() => { handleEditClick(entry.id); }}>
                   <h3>{entry.title}</h3>
                   <h4>{formatDate(entry.createdAt)}</h4>

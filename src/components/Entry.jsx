@@ -3,14 +3,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { getEntry } from '../actions/GetJournal'
 import Delete from '../assets/Delete.svg'
-import { deleteEntry } from '../actions/DeleteEntry'
+import { addToTrash } from '../actions/Trash'
 import EntryBox from '../styles/EntryStyles'
+import { Link } from 'react-router-dom'
 
 function Entry() {
   const accessToken = localStorage.getItem('accessToken')
   const selectedEntryId = useSelector((state) => state.entry.selectedEntryId);
   const deleteEntries = async (entryId) => {
-    dispatch(deleteEntry(entryId, accessToken));
+    dispatch(addToTrash(entryId, accessToken));
   };
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,7 +27,9 @@ function Entry() {
       <p dangerouslySetInnerHTML={{ __html: journal ? journal.content : '' }}></p>
       <EntryBox.ImageDiv>
 
-        <img src={Delete} alt='Delete' onClick={() => deleteEntries(journal ? journal.id : '')} />
+        <Link to={'/dashboard'}>
+          <img src={Delete} alt='Delete' onClick={() => deleteEntries(journal ? journal.id : '')} />
+        </Link>
       </EntryBox.ImageDiv>
     </EntryBox>
   )

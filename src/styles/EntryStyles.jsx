@@ -28,6 +28,7 @@ p{
   color: #5A4282;
 }
 img{
+  cursor:pointer;
     margin:2rem;
     align-items:end;
 }

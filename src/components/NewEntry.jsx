@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css"
 import EntryContainer from '../styles/NewEntryStyles';
-import { listCategory } from '../actions/ListCategory';
 import { addCategory } from '../actions/AddCategory';
+import { listCategory } from '../actions/ListCategory';
 
 function NewEntry() {
   const [title, setTitle] = useState('');
@@ -17,30 +17,31 @@ function NewEntry() {
   const [category, setCategory] = useState('');
   const selectedEntryId = useSelector((state) => state.entry.selectedEntryId);
   const accessToken = localStorage.getItem('accessToken')
-  const categories = localStorage.getItem('categories')
-  const categoryArray = categories.split(',');
-  const [otherCategory, setOtherCategory] = useState('');
+  // const categories = localStorage.getItem('categories')
+  // const categoryArray = categories.split(',');
+  const [isOther, setisOther] = useState(false);
+
+
   const handleSelectCategory = (event) => {
     const selectedCategory = event.target.value;
     setCategory(selectedCategory);
-
-    if (selectedCategory === 'others') {
-      setOtherCategory('');
-    }
+    setisOther(selectedCategory === 'others');
   };
-
-  const handleOtherCategoryChange = (event) => {
-    setCategory(event.target.value);
+  const handleAddCategory = () => {
+    dispatch(addCategory(category, accessToken))
+    setisOther(!isOther)
   };
 
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(listCategory(accessToken))
     if (selectedEntryId) {
       dispatch(getEntry(selectedEntryId, accessToken));
     }
   }, [selectedEntryId]);
 
   const journal = useSelector(state => state.entry.selectedEntry);
+  const categories = useSelector(state => state.entry.catList);
   useEffect(() => {
     if (journal) {
       setTitle(journal.title);
@@ -51,18 +52,13 @@ function NewEntry() {
 
   const handleShare = async () => {
     try {
-      const shareCategory = category === 'others' ? otherCategory : category;
 
       if (journal) {
-        dispatch(editEntry(journal.id, title, content, shareCategory, accessToken));
+        dispatch(editEntry(journal.id, title, content, accessToken));
       }
 
-      if (!categories.includes(shareCategory)) {
-        dispatch(addCategory(shareCategory, accessToken));
-      }
-
-      if (title !== '' && content !== '') {
-        dispatch(shareEntry(title, content, shareCategory, accessToken));
+      if (!journal && title !== '' && content !== '') {
+        dispatch(shareEntry(title, content, category, accessToken));
       }
     } catch (error) {
       console.error('Error sharing entry:', error);
@@ -80,21 +76,26 @@ function NewEntry() {
           onChange={(e) => setTitle(e.target.value)}
         />
         <EntryContainer.Filter>
-          {category === 'others' ? (
+          {isOther ? (
             <EntryContainer.categoryStyle>
               <input
                 type="text"
-                value={otherCategory}
+                value={category}
                 placeholder="Enter Other Category"
-                onChange={handleOtherCategoryChange}
+                onChange={(e) => setCategory(e.target.value)}
               />
+              <button
+                onClick={handleAddCategory}
+              >
+                Add
+              </button>
             </EntryContainer.categoryStyle>
           ) : (
             <select value={category} onChange={handleSelectCategory}>
               <option value="">Select category</option>
-              {categoryArray.map((cat)=>{
-                return(
-                  <option value={cat}>{cat}</option>
+              {categories.map((cat) => {
+                return (
+                  <option key={cat} value={cat}>{cat}</option>
                 )
               })}
               <option value="others">Other</option>
