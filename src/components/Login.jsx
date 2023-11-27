@@ -3,17 +3,16 @@ import Eud from '../assets/EduWhite.svg'
 import Blue from '../assets/BlueTemplate.svg'
 import HiddenEye from '../assets/EyeIcon.svg'
 import Eye from '../assets/Eye.png'
-import LoginMainDiv from '../styles/LoginStyles'
 import { useDispatch, useSelector } from 'react-redux'
-import { userLogin } from '../actions/UserLogin'
+import { userLogin } from '../actions/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { userSignUp } from '../actions/SignUp'
-import { Link } from 'react-router-dom'
+import { userSignUp } from '../actions/authSlice'
+import styled from "styled-components";
 
 function Login() {
     const navigate = useNavigate()
-    const [username, setUsername] = useState('');
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [isSignUp, setIsSignUp] = useState(false);
@@ -21,18 +20,19 @@ function Login() {
     const accessToken = localStorage.getItem('accessToken')
 
     const dispatch = useDispatch();
-    const handleLogin = () => {
+    const handleLogin = (e) => {
         if (isSignUp) {
-
-            dispatch(userSignUp(username, email, password));
+            dispatch(userSignUp({name, email, password}));
         } else {
-            dispatch(userLogin(username, password));
+            dispatch(userLogin({name, password}));
             setIsSignUp(!isSignUp)
             if (accessToken != null) {
-                navigate('/')
+                    navigate('/')
+                }
             }
-        }
-    };
+        };
+        const state = useSelector((state)=>state.entry)
+        console.log(state);
     const handleSignUp = () => {
         setIsSignUp(!isSignUp)
     };
@@ -41,33 +41,187 @@ function Login() {
     };
     return (
         <LoginMainDiv>
-            <LoginMainDiv.LoginDiv>
-                <LoginMainDiv.Heading>
+            <LoginDiv>
+                <Heading>
                     <h1>{isSignUp ? 'Sign' : 'Log'}</h1>
                     <h1>{isSignUp ? 'Up' : 'In'}</h1>
-                </LoginMainDiv.Heading>
+                </Heading>
                 <img src={Eud} alt="Logo" />
-            </LoginMainDiv.LoginDiv>
-            <LoginMainDiv.FormDiv>
+            </LoginDiv>
+            <FormDiv>
                 <img src={Blue} alt="" />
                 <form className="App">
-                    <input placeholder={isSignUp ? 'User name' : 'User name or Email ID'} value={username} onChange={(e) => setUsername(e.target.value)} />
+                    <input placeholder={isSignUp ? 'User name' : 'User name or Email ID'} value={name} onChange={(e) => setName(e.target.value)} />
                     {isSignUp &&
                         <input placeholder='User Email ID' value={email} onChange={(e) => setEmail(e.target.value)} />
                     }
-                    <LoginMainDiv.EyeIcon>
+                    <EyeIcon>
                         <input placeholder='Password' type={isHidden ? 'password' : 'text'} value={password} onChange={(e) => setPassword(e.target.value)} />
                         <img src={isHidden ? Eye : HiddenEye} alt="Hide" onClick={(hidePassword)} />
-                    </LoginMainDiv.EyeIcon>
+                    </EyeIcon>
                     <h4>forgotten password?</h4>
-                    <LoginMainDiv.ActionButtons>
+                    <ActionButtons>
                         <h3 onClick={handleSignUp}>{isSignUp ? 'Log In?' : 'Sign Up?'}</h3>
                         <button onClick={handleLogin}>Submit</button>
-                    </LoginMainDiv.ActionButtons>
+                    </ActionButtons>
                 </form>
-            </LoginMainDiv.FormDiv>
+            </FormDiv>
         </LoginMainDiv>
     )
 }
+
+
+const LoginMainDiv = styled.div`
+display:flex;
+height:100vh;
+background: #301DAD;
+`;
+const LoginDiv = styled.div`
+display:flex;
+width:100%;
+flex-direction:column;
+justify-content:space-between;
+img{
+    
+    width:9rem;
+    margin:2rem;
+}
+`;
+const Heading = styled.div`
+display:flex;
+margin-top:3rem;
+flex-direction:column;
+@media (max-width: 900px) {
+    flex-direction:row;
+  },
+h1{
+    margin:0;
+    font-family: Open Sans;
+    font-weight: 800;
+    line-height: 130px;
+    text-align: right;
+    font-size:8rem;
+    color:white;
+    position: relative;
+    right: -1rem;
+    @media (max-width: 900px) {
+            font-size:6rem;
+            right: 0rem;
+    
+}
+`;
+const FormDiv = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  img { 
+    width: 100%;
+    height:100%;
+    object-fit:fill;
+    @media (max-width: 900px) {
+        display:none;
+      }
+  }
+
+  form {
+    position: absolute; 
+    margin-left:7rem;
+    display:flex;
+    flex-direction:column;
+    input{
+        width:20rem;
+        margin-top:1.5rem;
+        padding:1rem;
+        border:none;
+        outline:none;
+        border-bottom:1px solid #00000033;
+    }
+    input::placeholder{
+        font-family: Open Sans;
+        font-size: 1.2rem;
+        font-weight: 300;
+        line-height: 1.6;
+        text-align: left;
+        color: #301DAD;
+    }
+    input:focus{
+        background-color: #CBC3FF24;
+
+    }
+    h4{
+        cursor:pointer;
+        margin:0 0 3rem 1rem;
+        font-family: Open Sans;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: left;
+        font-variation-settings: 'wdth' 90;
+        color: #301DAD;
+        align-self:start;
+
+    }
+}
+    @media (max-width: 900px) {
+        form{
+        margin-left:0rem;
+        h4{
+            color:white;
+        }
+    }
+    `;
+    
+const ActionButtons = styled.div`
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    h3{
+        cursor:pointer;
+        margin:0rem 2rem 0 0;
+        font-family: Open Sans;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.18rem;
+        font-variation-settings: 'wdth' 90;
+        color: #301DAD;
+        align-self:center;
+        @media (max-width: 900px) {
+            color:white;
+        }
+
+    }
+    button{
+        cursor:pointer;
+        align-self:end;
+        width:10rem;
+        border:1px solid #301DAD;
+        border-radius:0.16rem;
+        font-family: Open Sans;
+        font-family: Open Sans;
+        font-size: 1.2rem;
+        font-weight: 300;
+        line-height: 1.6;
+        text-align: center;
+        color: #301DAD;
+        background-color:white;
+        box-shadow: 0px 4px 7px 0px #00000040;
+
+    }
+`;
+const EyeIcon = styled.div`
+display: grid;
+flex-direction: row;
+justify-items: end;
+img{
+    position:relative;
+    bottom: 2rem;
+    right: 2rem;
+    width:1rem;  
+    @media (max-width: 900px) {
+        display:block;
+      }
+}
+`;
 
 export default Login
