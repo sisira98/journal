@@ -1,13 +1,13 @@
 import React from 'react'
-import Eud from '../assets/EduWhite.svg'
-import Blue from '../assets/BlueTemplate.svg'
-import HiddenEye from '../assets/EyeIcon.svg'
-import Eye from '../assets/Eye.png'
+import Eud from '../../assets/EduWhite.svg'
+import Blue from '../../assets/BlueTemplate.svg'
+import HiddenEye from '../../assets/EyeIcon.svg'
+import Eye from '../../assets/Eye.png'
 import { useDispatch, useSelector } from 'react-redux'
-import { userLogin } from '../actions/authSlice'
+import { userLogin } from '../action'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { userSignUp } from '../actions/authSlice'
+import { userSignUp } from '../action'
 import styled from "styled-components";
 
 function Login() {

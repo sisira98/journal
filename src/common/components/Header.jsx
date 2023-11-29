@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from "styled-components";
-import Bar from '../assets/Bar.svg';
-import Eudaimonia from '../assets/Eudaimonia.svg';
-import ProfilePic from '../assets/ProfilePic.svg';
+import Bar from '../../assets/Bar.svg';
+import Eudaimonia from '../../assets/Eudaimonia.svg';
+import ProfilePic from '../../assets/ProfilePic.svg';
 
 function Header({ toggleSidebar }) {
     return (

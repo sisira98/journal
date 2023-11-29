@@ -1,11 +1,11 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
-import Delete from '../assets/Delete.svg'
-import { getJournal } from '../actions/journal'
+import { useEffect } from 'react'
+import Delete from '../../assets/Delete.svg'
+import { getJournal } from '../action'
 import { Link } from 'react-router-dom'
 import styled from "styled-components";
-import addToTrash from '../actions/journal'
+import {addToTrash} from '../../trash/action'
 
 function Entry() {
   const accessToken = localStorage.getItem('accessToken')

@@ -1,9 +1,9 @@
 import React from 'react'
-import store from '../actions/Store';
+import store from './Store';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
-import LoginPage from './LoginPage';
-import AppRoutes from './AppRoutes';
+import LoginPage from '../auth/loginRoutes';
+import AppRoutes from '../journal/appRoutes';
 function Page() {
   return (
     <Provider store={store}>

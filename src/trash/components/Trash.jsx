@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { listTrash, restoreJournal, deleteJournal } from '../actions/journal';
+import { listTrash, restoreJournal, deleteJournal } from '../action';
 import { format } from 'date-fns';
-import Delete from '../assets/Trash.svg'
-import Restore from '../assets/Restore.svg'
+import Delete from '../../assets/Trash.svg'
+import Restore from '../../assets/Restore.svg'
 
 function Trash() {
     const accessToken = localStorage.getItem('accessToken')
@@ -29,7 +29,7 @@ function Trash() {
         window.location.reload();
     }
 
-    const entries = useSelector(state => state.entry.trashList);
+    const entries = useSelector(state => state.trash.trashList);
     return (
         <TrashContainer>
             <TrashBox>

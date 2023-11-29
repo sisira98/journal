@@ -1,5 +1,5 @@
 import React from 'react'
-import { createJournal,addCategory,listCategory,editJournal,getJournal} from '../actions/journal'
+import { createJournal,addCategory,listCategory,editJournal,getJournal} from '../action'
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';

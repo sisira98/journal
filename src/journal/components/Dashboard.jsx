@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { listJournals } from "../actions/journal"
+import { listJournals } from "../action"
 import { format } from 'date-fns'
-import Clip from '../assets/clip.svg'
+import Clip from '../../assets/clip.svg'
 import { Link } from "react-router-dom"
-import SearchIcon from '../assets/SearchIcon.svg'
-import DashboardIcon from '../assets/Dashboard.svg'
-import NewPostIcon from '../assets/NewPostIcon.svg'
-import DashboardOneIconBlack from '../assets/DashboardIconOneBlack.svg'
-import DashboardIconBlack from '../assets/DashboardIconBlack.svg'
-import { addToTrash } from "../actions/journal"
-import Edit from '../assets/Edit.svg'
-import Delete from '../assets/Delete.svg'
-import { selectJournal } from "../actions/journal"
+import SearchIcon from '../../assets/SearchIcon.svg'
+import DashboardIcon from '../../assets/Dashboard.svg'
+import NewPostIcon from '../../assets/NewPostIcon.svg'
+import DashboardOneIconBlack from '../../assets/DashboardIconOneBlack.svg'
+import DashboardIconBlack from '../../assets/DashboardIconBlack.svg'
+import { addToTrash } from "../../trash/action"
+import Edit from '../../assets/Edit.svg'
+import Delete from '../../assets/Delete.svg'
+import { selectJournal } from "../action"
 import Cards from "./Cards"
-import DashboardOneIcon from '../assets/DashboardIconOne.svg'
-import DownArrow from '../assets/DownArrow.png'
-import TopArrow from '../assets/TopArrow.png'
-import { listCategory } from "../actions/journal"
+import DashboardOneIcon from '../../assets/DashboardIconOne.svg'
+import DownArrow from '../../assets/DownArrow.png'
+import TopArrow from '../../assets/TopArrow.png'
+import { listCategory } from "../action"
 import styled, { keyframes } from "styled-components";
-import FilterIcon from '../assets/Filter.png'
+import FilterIcon from '../../assets/Filter.png'
 
 function Dashboard() {
   const [showFullContent, setShowFullContent] = useState(false);

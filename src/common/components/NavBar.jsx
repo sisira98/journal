@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import DashboardIcon from '../assets/Dashboard.svg';
-import EntryIcon from '../assets/EntryIcon.svg';
-import Trash from '../assets/Trash.svg';
+import DashboardIcon from '../../assets/Dashboard.svg';
+import EntryIcon from '../../assets/EntryIcon.svg';
+import Trash from '../../assets/Trash.svg';
 
 function NavBar({ isOpen, toggleSidebar }) {
   return (

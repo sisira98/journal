@@ -1,4 +1,4 @@
-import Page from "./pages/Page";
+import Page from "./common/routes";
 
 function App() {
   return (

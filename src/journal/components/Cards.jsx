@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { totalListJournal, selectJournal } from "../actions//journal";
+import { totalListJournal, selectJournal } from "../action";
 import { format } from 'date-fns';
 import { Link } from "react-router-dom";
 import { Splide, SplideSlide } from '@splidejs/react-splide'

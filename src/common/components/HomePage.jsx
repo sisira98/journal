@@ -1,5 +1,5 @@
 import React from 'react'
-import Pen from '../assets/Pen.svg'
+import Pen from '../../assets/Pen.svg'
 import { Link } from 'react-router-dom'
 import { TypeAnimation } from 'react-type-animation'
 import styled from "styled-components";
