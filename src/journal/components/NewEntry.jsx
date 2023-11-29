@@ -7,7 +7,7 @@ import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css"
 import styled from 'styled-components';
 
-function NewEntry() {
+export const NewEntry=()=> {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
@@ -267,4 +267,3 @@ input{
     color: #5A4282;
   }
 `;
-export default NewEntry

@@ -10,7 +10,7 @@ import { useState } from 'react'
 import { userSignUp } from '../action'
 import styled from "styled-components";
 
-function Login() {
+export const Login = ()=> {
     const navigate = useNavigate()
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -223,5 +223,3 @@ img{
       }
 }
 `;
-
-export default Login

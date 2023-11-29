@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import styled from "styled-components";
 import {addToTrash} from '../../trash/action'
 
-function Entry() {
+export const Entry=()=> {
   const accessToken = localStorage.getItem('accessToken')
   const entryId = useSelector((state) => state.entry.selectedEntryId);
   const deleteEntries = async (entryId) => {
@@ -74,5 +74,3 @@ const ImageDiv = styled.div`
 display:flex;
 justify-content:flex-end;
 `;
-
-export default Entry

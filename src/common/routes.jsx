@@ -1,15 +1,15 @@
 import React from 'react'
-import store from './Store';
+import store from './store';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
-import LoginPage from '../auth/loginRoutes';
-import AppRoutes from '../journal/appRoutes';
+import {Login} from '../auth/components/Login';
+import AppRoutes from '../journal/routes';
 function Page() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/login/*" element={<LoginPage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/*" element={<AppRoutes />} />
         </Routes>
       </BrowserRouter>

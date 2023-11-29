@@ -5,7 +5,7 @@ import DashboardIcon from '../../assets/Dashboard.svg';
 import EntryIcon from '../../assets/EntryIcon.svg';
 import Trash from '../../assets/Trash.svg';
 
-function NavBar({ isOpen, toggleSidebar }) {
+export const NavBar=({ isOpen, toggleSidebar }) =>{
   return (
     <Nav selected={isOpen} onClick={toggleSidebar}>
       <LinkContainer>
@@ -70,4 +70,3 @@ const LinkTitle = styled.div`
   }
 `;
 
-export default NavBar;

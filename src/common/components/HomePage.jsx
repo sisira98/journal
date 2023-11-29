@@ -5,7 +5,7 @@ import { TypeAnimation } from 'react-type-animation'
 import styled from "styled-components";
 import { useSelector } from 'react-redux'
 
-function HomePage() {
+export const HomePage=()=> {
     const user = localStorage.getItem('name')
     const state = useSelector((state) => state.entry)
     return (
@@ -89,5 +89,3 @@ font-size: 2rem;
 font-weight: 300;
 line-height: 3.6rem;
 `;
-
-export default HomePage

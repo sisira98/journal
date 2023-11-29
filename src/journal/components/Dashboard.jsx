@@ -14,7 +14,7 @@ import { addToTrash } from "../../trash/action"
 import Edit from '../../assets/Edit.svg'
 import Delete from '../../assets/Delete.svg'
 import { selectJournal } from "../action"
-import Cards from "./Cards"
+import {Cards} from "./Cards"
 import DashboardOneIcon from '../../assets/DashboardIconOne.svg'
 import DownArrow from '../../assets/DownArrow.png'
 import TopArrow from '../../assets/TopArrow.png'
@@ -22,7 +22,7 @@ import { listCategory } from "../action"
 import styled, { keyframes } from "styled-components";
 import FilterIcon from '../../assets/Filter.png'
 
-function Dashboard() {
+export const Dashboard=()=> {
   const [showFullContent, setShowFullContent] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [isColorChanged, setColorChanged] = useState(false);
@@ -452,5 +452,3 @@ img{
   cursor:pointer;
 }
 `;
-
-export default Dashboard

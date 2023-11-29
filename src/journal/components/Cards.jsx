@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css';
 
-function Cards() {
+export const Cards=()=> {
   const accessToken = localStorage.getItem('accessToken')
   function formatDate(createdDate) {
     const date = new Date(createdDate);
@@ -88,6 +88,3 @@ p{
     line-height:1.19rem;
   }
 `;
-
-
-export default Cards

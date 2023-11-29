@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 import Delete from '../../assets/Trash.svg'
 import Restore from '../../assets/Restore.svg'
 
-function Trash() {
+export const Trash=()=> {
     const accessToken = localStorage.getItem('accessToken')
     function formatDate(createdDate) {
         const date = new Date(createdDate);
@@ -125,5 +125,3 @@ img{
 }
 
 `;
-
-export default Trash

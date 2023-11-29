@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './Header';
-import NavBar from './NavBar';
+import {Header} from './Header';
+import {NavBar} from './NavBar';
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const Layout = ({ children }) => {
+export const Layout = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -24,5 +24,3 @@ ${props =>
       ? 'position: fixed;top: 0;left: 0;width: 100%;height: 100%;background-color: rgba(0,0,0,0.4);transition: 0.5s;z-index:1;opacity:10;'
       : ''}
 `;
-
-export default Layout;
