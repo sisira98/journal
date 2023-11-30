@@ -1,5 +1,5 @@
 import React from 'react'
-import store from './storeOnw';
+import store from './store';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
 import {Login} from '../auth/components/Login';
