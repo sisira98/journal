@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 import Delete from '../../assets/Trash.svg'
 import Restore from '../../assets/Restore.svg'
 
-export const Trash=()=> {
+export const Trash = () => {
     const accessToken = localStorage.getItem('accessToken')
     function formatDate(createdDate) {
         const date = new Date(createdDate);
@@ -17,15 +17,15 @@ export const Trash=()=> {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(listTrash({accessToken}));
+        dispatch(listTrash({ accessToken }));
     }, []);
 
     const handleDelete = (entryId) => {
-        dispatch(deleteJournal({entryId, accessToken}))
+        dispatch(deleteJournal({ entryId, accessToken }))
         window.location.reload();
     }
     const handleRestore = (entryId) => {
-        dispatch(restoreJournal({entryId, accessToken}))
+        dispatch(restoreJournal({ entryId, accessToken }))
         window.location.reload();
     }
 

@@ -4,7 +4,7 @@ import Bar from '../../assets/Bar.svg';
 import Eudaimonia from '../../assets/Eudaimonia.svg';
 import ProfilePic from '../../assets/ProfilePic.svg';
 
-export const Header =({ toggleSidebar }) =>{
+export const Header = ({ toggleSidebar }) => {
     return (
         <><Head>
             <img src={Bar} alt="bar" onClick={toggleSidebar} />

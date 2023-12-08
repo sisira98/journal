@@ -2,7 +2,7 @@ import React from 'react'
 import store from './store';
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
-import {Login} from '../auth/components/Login';
+import { Login } from '../auth/components/Login';
 import AppRoutes from '../journal/routes';
 function Page() {
   return (

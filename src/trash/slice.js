@@ -1,28 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {listTrash, addToTrash, restoreJournal, deleteJournal} from './action'
+import { listTrash, addToTrash, restoreJournal, deleteJournal } from './action'
 
 const initialState = {
     sharedData: null,
     trashList: [],
     accessToken: null,
-  };
+};
 
-  const trashSlice = createSlice({
-    name:"trashSlice",
+const trashSlice = createSlice({
+    name: "trashSlice",
     initialState,
-    reducers : {
+    reducers: {
     },
-    extraReducers : {
-        [deleteJournal.fulfilled] :(state,action)=>{
+    extraReducers: {
+        [deleteJournal.fulfilled]: (state, action) => {
             state.sharedData = action.payload
         },
-        [listTrash.fulfilled] :(state,action)=>{
+        [listTrash.fulfilled]: (state, action) => {
             state.trashList = action.payload
         },
-        [restoreJournal.fulfilled] :(state,action)=>{
+        [restoreJournal.fulfilled]: (state, action) => {
             state.sharedData = action.payload
         },
-        [addToTrash.fulfilled] :(state,action)=>{
+        [addToTrash.fulfilled]: (state, action) => {
             state.sharedData = action.payload
         },
     }

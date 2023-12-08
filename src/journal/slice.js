@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {createJournal, getJournal, editJournal, listCategory, listJournals, totalListJournal, addCategory, selectJournal} from './action'
+import { createJournal, getJournal, editJournal, listCategory, listJournals, totalListJournal, addCategory, selectJournal } from './action'
 
 const initialState = {
     sharedData: null,
@@ -10,36 +10,36 @@ const initialState = {
     catList: [],
     trashList: [],
     accessToken: null,
-  };
+};
 
-  const journalSlice = createSlice({
-    name:"journalSlice",
+const journalSlice = createSlice({
+    name: "journalSlice",
     initialState,
-    reducers : {
+    reducers: {
     },
-    extraReducers : {
-        [createJournal.fulfilled] :(state,action)=>{
+    extraReducers: {
+        [createJournal.fulfilled]: (state, action) => {
             state.sharedData = action.payload
         },
-        [getJournal.fulfilled] :(state,action)=>{
+        [getJournal.fulfilled]: (state, action) => {
             state.selectedEntry = action.payload
         },
-        [editJournal.fulfilled] :(state,action)=>{
+        [editJournal.fulfilled]: (state, action) => {
             state.sharedData = action.payload
         },
-        [listCategory.fulfilled] :(state,action)=>{
+        [listCategory.fulfilled]: (state, action) => {
             state.catList = action.payload
         },
-        [listJournals.fulfilled] :(state,action)=>{
+        [listJournals.fulfilled]: (state, action) => {
             state.listData = action.payload
         },
-        [totalListJournal.fulfilled] :(state,action)=>{
+        [totalListJournal.fulfilled]: (state, action) => {
             state.totalList = action.payload
         },
-        [addCategory.fulfilled] :(state,action)=>{
+        [addCategory.fulfilled]: (state, action) => {
             state.sharedData = action.payload
         },
-        [selectJournal.fulfilled] :(state,action)=>{
+        [selectJournal.fulfilled]: (state, action) => {
             state.selectedEntryId = action.payload
         },
     }

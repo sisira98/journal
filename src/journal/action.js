@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 const apiUrl = import.meta.env.VITE_API_URL
 
 
-export const createJournal = createAsyncThunk("createJournal" , async({title, content, category, accessToken})=>{
+export const createJournal = createAsyncThunk("createJournal", async ({ title, content, category, accessToken }) => {
     const response = await fetch(`${apiUrl}/journal/create`, {
         method: 'POST',
         headers: {
@@ -15,30 +15,30 @@ export const createJournal = createAsyncThunk("createJournal" , async({title, co
             category,
         }),
     })
-    try{
+    try {
         const result = await response.json()
         return result
-    }catch (error){
+    } catch (error) {
         return isRejectedWithValue(error.response)
     }
 })
 
-export const getJournal = createAsyncThunk("getJournal" , async({entryId, accessToken})=>{
+export const getJournal = createAsyncThunk("getJournal", async ({ entryId, accessToken }) => {
     const response = await fetch(`${apiUrl}/journal/${entryId}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             ...(accessToken && { 'Authorization': `Bearer ${accessToken}` }),
-          },
+        },
     })
-    try{
+    try {
         const result = await response.json()
         return result
-    }catch (error){
+    } catch (error) {
         return isRejectedWithValue(error.response)
     }
 })
-export const editJournal = createAsyncThunk("editJournal" , async({entryId, shareTitle, shareContent, accessToken})=>{
+export const editJournal = createAsyncThunk("editJournal", async ({ entryId, shareTitle, shareContent, accessToken }) => {
     const response = await fetch(`${apiUrl}/journal/${entryId}`, {
         method: 'PUT',
         headers: {
@@ -50,78 +50,78 @@ export const editJournal = createAsyncThunk("editJournal" , async({entryId, shar
             content: shareContent,
         }),
     })
-    try{
+    try {
         const result = await response.json()
         return result
-    }catch (error){
+    } catch (error) {
         return isRejectedWithValue(error.response)
     }
 })
-export const listCategory = createAsyncThunk("listCategory" , async({accessToken})=>{
+export const listCategory = createAsyncThunk("listCategory", async ({ accessToken }) => {
     const response = await fetch(`${apiUrl}/category/list`, {
-        headers : {
+        headers: {
             'Content-Type': 'application/json',
             ...(accessToken && { 'Authorization': `Bearer ${accessToken}` }),
         }
     })
-    try{
+    try {
         const result = await response.json()
         return result
-    }catch (error){
+    } catch (error) {
         return isRejectedWithValue(error.response)
     }
 })
-export const listJournals = createAsyncThunk("listJournals" , async({accessToken, pageNo, searchBy})=>{
+export const listJournals = createAsyncThunk("listJournals", async ({ accessToken, pageNo, searchBy }) => {
     const response = await fetch(`${apiUrl}/journal/search?page=${pageNo}&searchBy=${searchBy}&size=3`, {
-        headers : {
+        headers: {
             'Content-Type': 'application/json',
             ...(accessToken && { 'Authorization': `Bearer ${accessToken}` }),
         }
     })
-    try{
+    try {
         const result = await response.json()
         return result
-    }catch (error){
+    } catch (error) {
         return isRejectedWithValue(error.response)
     }
 })
 
-export const totalListJournal= createAsyncThunk("totalListJournal" , async({accessToken})=>{
+export const totalListJournal = createAsyncThunk("totalListJournal", async ({ accessToken }) => {
     const response = await fetch(`${apiUrl}/journal/list`, {
-        headers : {
+        headers: {
             'Content-Type': 'application/json',
             ...(accessToken && { 'Authorization': `Bearer ${accessToken}` }),
         }
     })
-    try{
+    try {
         const result = await response.json()
         return result
-    }catch (error){
+    } catch (error) {
         return isRejectedWithValue(error.response)
     }
 })
 
-export const addCategory= createAsyncThunk("addCategory" , async({category, accessToken})=>{
+export const addCategory = createAsyncThunk("addCategory", async ({ category, accessToken }) => {
     const response = await fetch(`${apiUrl}/category/create`, {
         method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    ...(accessToken && { 'Authorization': `Bearer ${accessToken}` }),
-                },
-                body: category
-            });
-    try{
+        headers: {
+            'Content-Type': 'application/json',
+            ...(accessToken && { 'Authorization': `Bearer ${accessToken}` }),
+        },
+        body: category
+    });
+    try {
         const result = await response.json()
         return result
-    }catch (error){
+    } catch (error) {
         return isRejectedWithValue(error.response)
     }
 })
-export const selectJournal= createAsyncThunk("selectJournal" , async(entryId)=>{
-    try{
+export const selectJournal = createAsyncThunk("selectJournal", async (entryId) => {
+    try {
         const result = entryId
         return result
-    }catch (error){
+    } catch (error) {
         return isRejectedWithValue(error.response)
     }
 })

@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import '@splidejs/react-splide/css';
 
-export const Cards=()=> {
+export const Cards = () => {
   const accessToken = localStorage.getItem('accessToken')
   function formatDate(createdDate) {
     const date = new Date(createdDate);
@@ -16,7 +16,7 @@ export const Cards=()=> {
   }
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(totalListJournal({accessToken}));
+    dispatch(totalListJournal({ accessToken }));
   }, []);
 
   const entries = useSelector(state => state.entry.totalList);

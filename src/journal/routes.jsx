@@ -1,11 +1,11 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import {Layout} from '../common/components/Layout';
-import {Dashboard} from './components/Dashboard';
-import {NewEntry} from './components/NewEntry';
-import {Entry} from './components/Entry';
-import {Trash} from '../trash/components/Trash';
-import {HomePage} from '../common/components/HomePage';
+import { Layout } from '../common/components/Layout';
+import { Dashboard } from './components/Dashboard';
+import { NewEntry } from './components/NewEntry';
+import { Entry } from './components/Entry';
+import { Trash } from '../trash/components/Trash';
+import { HomePage } from '../common/components/HomePage';
 
 function AppRoutes() {
     return (

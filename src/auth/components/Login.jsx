@@ -10,7 +10,7 @@ import { useState } from 'react'
 import { userSignUp } from '../action'
 import styled from "styled-components";
 
-export const Login = ()=> {
+export const Login = () => {
     const navigate = useNavigate()
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
@@ -22,16 +22,16 @@ export const Login = ()=> {
     const dispatch = useDispatch();
     const handleLogin = (e) => {
         if (isSignUp) {
-            dispatch(userSignUp({name, email, password}));
+            dispatch(userSignUp({ name, email, password }));
         } else {
-            dispatch(userLogin({name, password}));
+            dispatch(userLogin({ name, password }));
             setIsSignUp(!isSignUp)
             if (accessToken != null) {
-                    navigate('/')
-                }
+                navigate('/')
             }
-        };
-        const state = useSelector((state)=>state.entry)
+        }
+    };
+    const state = useSelector((state) => state.entry)
     const handleSignUp = () => {
         setIsSignUp(!isSignUp)
     };
@@ -170,7 +170,7 @@ const FormDiv = styled.div`
         }
     }
     `;
-    
+
 const ActionButtons = styled.div`
     display:flex;
     flex-direction:row;

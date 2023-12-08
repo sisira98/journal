@@ -14,7 +14,7 @@ import { addToTrash } from "../../trash/action"
 import Edit from '../../assets/Edit.svg'
 import Delete from '../../assets/Delete.svg'
 import { selectJournal } from "../action"
-import {Cards} from "./Cards"
+import { Cards } from "./Cards"
 import DashboardOneIcon from '../../assets/DashboardIconOne.svg'
 import DownArrow from '../../assets/DownArrow.png'
 import TopArrow from '../../assets/TopArrow.png'
@@ -22,7 +22,7 @@ import { listCategory } from "../action"
 import styled, { keyframes } from "styled-components";
 import FilterIcon from '../../assets/Filter.png'
 
-export const Dashboard=()=> {
+export const Dashboard = () => {
   const [showFullContent, setShowFullContent] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [isColorChanged, setColorChanged] = useState(false);
@@ -42,8 +42,8 @@ export const Dashboard=()=> {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(listCategory({accessToken}));
-    dispatch(listJournals({accessToken, pageNo}));
+    dispatch(listCategory({ accessToken }));
+    dispatch(listJournals({ accessToken, pageNo }));
   }, []);
 
   const entries = useSelector(state => state.entry.listData.data);
@@ -72,14 +72,14 @@ export const Dashboard=()=> {
   }, []);
 
   const handleSearch = () => {
-    dispatch(listJournals({accessToken, pageNo, searchBy}));
+    dispatch(listJournals({ accessToken, pageNo, searchBy }));
   };
   const handleEditClick = (entryId) => {
     dispatch(selectJournal(entryId));
   };
 
   const deleteEntries = async (entryId) => {
-    dispatch(addToTrash({entryId, accessToken}));
+    dispatch(addToTrash({ entryId, accessToken }));
     window.location.reload();
   };
 
@@ -88,18 +88,18 @@ export const Dashboard=()=> {
   };
 
   const handleSelectCategory = (event) => {
-   setSearchBy(event.target.value);
-    dispatch(listJournals({accessToken, pageNo, searchBy}));
+    setSearchBy(event.target.value);
+    dispatch(listJournals({ accessToken, pageNo, searchBy }));
   };
 
   const showMoreJournal = () => {
     setNoData(!noData)
     setPageNo((prevPageNo) => prevPageNo + 1);
-    dispatch(listJournals({accessToken, pageNo}));
+    dispatch(listJournals({ accessToken, pageNo }));
   };
   const showPrevJournal = () => {
     setPageNo((prevPageNo) => prevPageNo - 1);
-    dispatch(listJournals({accessToken, pageNo}));
+    dispatch(listJournals({ accessToken, pageNo }));
   };
 
 
@@ -141,7 +141,7 @@ export const Dashboard=()=> {
         <Content>
           <Main>
             {pageNo != 0 &&
-             <BounceInvert src={TopArrow} alt="Down arrow" onClick={showPrevJournal} />
+              <BounceInvert src={TopArrow} alt="Down arrow" onClick={showPrevJournal} />
             }
             {entries && entries.map((entry) => {
               return (
@@ -162,8 +162,8 @@ export const Dashboard=()=> {
               );
             }
             )}
-            {setNoData &&  
-            <Bounce src={DownArrow} alt="Down arrow" onClick={showMoreJournal} />
+            {setNoData &&
+              <Bounce src={DownArrow} alt="Down arrow" onClick={showMoreJournal} />
             }
           </Main>
           <EntryBox key={selectedEntry ? selectedEntry.id : ''} selected={isMobileView}>
@@ -353,9 +353,9 @@ min-height:13rem;
 box-shadow: 3px 4px 4px 2px #0000000F; 
 border-radius:0.65rem;
 ${props =>
-        props.selected
-            ? 'border-right: 0.5rem solid #301DAD63;'
-            : ''};
+    props.selected
+      ? 'border-right: 0.5rem solid #301DAD63;'
+      : ''};
 h3{
   margin:0 20rem 0 0;
   padding:0rem 0 0.5rem 2rem;

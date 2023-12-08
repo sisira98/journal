@@ -1,5 +1,5 @@
 import React from 'react'
-import { createJournal,addCategory,listCategory,editJournal,getJournal} from '../action'
+import { createJournal, addCategory, listCategory, editJournal, getJournal } from '../action'
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import ReactQuill from 'react-quill';
 import "react-quill/dist/quill.snow.css"
 import styled from 'styled-components';
 
-export const NewEntry=()=> {
+export const NewEntry = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
@@ -22,15 +22,15 @@ export const NewEntry=()=> {
     setisOther(selectedCategory === 'others');
   };
   const handleAddCategory = () => {
-    dispatch(addCategory({category, accessToken}))
+    dispatch(addCategory({ category, accessToken }))
     setisOther(!isOther)
   };
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(listCategory({accessToken}))
+    dispatch(listCategory({ accessToken }))
     if (entryId) {
-      dispatch(getJournal({entryId, accessToken}));
+      dispatch(getJournal({ entryId, accessToken }));
     }
   }, [entryId]);
 
@@ -47,12 +47,12 @@ export const NewEntry=()=> {
   const handleShare = async () => {
     try {
       if (journal) {
-        const id =journal.id
-        dispatch(editJournal({id, title, content, accessToken}));
+        const id = journal.id
+        dispatch(editJournal({ id, title, content, accessToken }));
       }
 
       if (!journal && title !== '' && content !== '') {
-        dispatch(createJournal({title, content, category, accessToken}));
+        dispatch(createJournal({ title, content, category, accessToken }));
       }
     } catch (error) {
       console.error('Error sharing entry:', error);

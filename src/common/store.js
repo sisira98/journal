@@ -6,8 +6,8 @@ import trashSlice from '../trash/slice';
 
 const store = configureStore({
   reducer: {
-    entry:journalSlice,
-    trash:trashSlice,
+    entry: journalSlice,
+    trash: trashSlice,
     auth: authSlice,
   },
 });

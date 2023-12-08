@@ -5,18 +5,18 @@ import Delete from '../../assets/Delete.svg'
 import { getJournal } from '../action'
 import { Link } from 'react-router-dom'
 import styled from "styled-components";
-import {addToTrash} from '../../trash/action'
+import { addToTrash } from '../../trash/action'
 
-export const Entry=()=> {
+export const Entry = () => {
   const accessToken = localStorage.getItem('accessToken')
   const entryId = useSelector((state) => state.entry.selectedEntryId);
   const deleteEntries = async (entryId) => {
-    dispatch(addToTrash({entryId, accessToken}));
+    dispatch(addToTrash({ entryId, accessToken }));
   };
   const dispatch = useDispatch();
   useEffect(() => {
     if (entryId != null) {
-      dispatch(getJournal({entryId, accessToken}));
+      dispatch(getJournal({ entryId, accessToken }));
     }
   }, [entryId]);
 
