@@ -24,7 +24,6 @@ export const createJournal = createAsyncThunk("createJournal" , async({title, co
 })
 
 export const getJournal = createAsyncThunk("getJournal" , async({entryId, accessToken})=>{
-    console.log(accessToken);
     const response = await fetch(`${apiUrl}/journal/${entryId}`, {
         method: 'GET',
         headers: {
@@ -73,7 +72,6 @@ export const listCategory = createAsyncThunk("listCategory" , async({accessToken
     }
 })
 export const listJournals = createAsyncThunk("listJournals" , async({accessToken, pageNo, searchBy})=>{
-    console.log(pageNo,searchBy);
     const response = await fetch(`${apiUrl}/journal/search?page=${pageNo}&searchBy=${searchBy}&size=3`, {
         headers : {
             'Content-Type': 'application/json',

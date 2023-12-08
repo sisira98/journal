@@ -48,7 +48,6 @@ export const restoreJournal= createAsyncThunk("restoreJournal" , async({entryId,
 })
 
 export const addToTrash= createAsyncThunk("addToTrash" , async({entryId, accessToken})=>{
-    console.log(accessToken);
     const response = await fetch(`${apiUrl}/journal/${entryId}`, {
         method: 'PATCH',
         headers : {

@@ -33,7 +33,6 @@ export const Dashboard=()=> {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [pageNo, setPageNo] = useState(0);
   const [searchBy, setSearchBy] = useState('');
-  console.log(searchBy);
   const [noData, setNoData] = useState(false);
 
   function formatDate(createdDate) {

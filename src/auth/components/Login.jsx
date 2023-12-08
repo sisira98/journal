@@ -32,7 +32,6 @@ export const Login = ()=> {
             }
         };
         const state = useSelector((state)=>state.entry)
-        console.log(state);
     const handleSignUp = () => {
         setIsSignUp(!isSignUp)
     };

@@ -22,7 +22,6 @@ export const Cards=()=> {
   const entries = useSelector(state => state.entry.totalList);
 
   const handleEditClick = (entryId) => {
-    console.log(entryId);
     dispatch(selectJournal(entryId));
   };
   return (
